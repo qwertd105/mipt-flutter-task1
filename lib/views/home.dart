@@ -1,8 +1,8 @@
-import 'package:any_news/helper/data.dart';
+import 'package:tsk1/helper/data.dart';
 
-import 'package:any_news/models/category_model.dart';
-import 'package:any_news/views/article_view.dart';
-import 'package:any_news/views/category_news.dart';
+import 'package:tsk1/models/category_model.dart';
+import 'package:tsk1/views/article_view.dart';
+import 'package:tsk1/views/category_news.dart';
 import '../helper/app_state.dart';
 import '../helper/news.dart';
 import '../models/article_model.dart';
