@@ -30,7 +30,7 @@
 
 ## Скриншоты
 ![screen1](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/image_2024-03-11_21-06-30.png)
-![sc](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/image_2024-03-11_21-06-45.png)
 ![sc](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/image_2024-03-11_21-06-56.png)
 ![sc](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/image_2024-03-11_21-07-24.png)
 ![sc](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/image_2024-03-11_21-07-38.png)
+![sc](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/image_2024-03-11_21-06-45.png)
