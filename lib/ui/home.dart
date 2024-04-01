@@ -1,12 +1,12 @@
 import 'package:hive/hive.dart';
-import 'package:tsk1/helper/data.dart';
+import 'package:tsk1/data/constants/data.dart';
 
-import 'package:tsk1/models/category_model.dart';
-import 'package:tsk1/views/article_view.dart';
-import 'package:tsk1/views/category_news.dart';
-import '../helper/app_state.dart';
-import '../helper/news.dart';
-import '../models/article_model.dart';
+import 'package:tsk1/data/models/category_model.dart';
+import 'package:tsk1/ui/article_view.dart';
+import 'package:tsk1/ui/category_news.dart';
+import '../core/app_state.dart';
+import '../domain/utils/news.dart';
+import '../data/models/article_model.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';

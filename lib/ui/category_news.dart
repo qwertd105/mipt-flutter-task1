@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 
-import '../helper/app_state.dart';
-import '../models/article_model.dart';
-import '../helper/news.dart';
+import '../core/app_state.dart';
+import '../data/models/article_model.dart';
+import '../domain/utils/news.dart';
 
 import 'home.dart' show BlogTile;
 

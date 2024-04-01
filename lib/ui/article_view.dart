@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../helper/app_state.dart';
+import '../core/app_state.dart';
 
 class ArticleView extends StatefulWidget {
   final String blogUrl;
