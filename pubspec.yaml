@@ -38,10 +38,13 @@ dependencies:
   cupertino_icons: ^1.0.6
   http: ^1.2.1
   webview_flutter: ^4.7.0
+  hive:
+  hive_flutter:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  hive_flutter:
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

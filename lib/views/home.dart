@@ -1,3 +1,4 @@
+import 'package:hive/hive.dart';
 import 'package:tsk1/helper/data.dart';
 
 import 'package:tsk1/models/category_model.dart';
@@ -151,10 +152,36 @@ class CategoryTile extends StatelessWidget {
   );
 }
 
-class BlogTile extends StatelessWidget {
+class BlogTile extends StatefulWidget {
   final String? imgUrl, title, description, url;
 
   const BlogTile({super.key, required this.imgUrl, required this.title, required this.description, required this.url});
+
+  @override
+  State<BlogTile> createState() => _BlogTileState();
+}
+
+class _BlogTileState extends State<BlogTile> {
+  bool isLiked = false;
+  final favourites = Hive.box('favourites');
+
+  @override
+  void initState(){
+    super.initState();
+    isLiked = favourites.get(widget.url) != null;
+  }
+
+  toggleLike(){
+    if (!isLiked) {
+      favourites.put(widget.url, true);
+    } else {
+      favourites.delete(widget.url);
+    }
+
+    setState(() {
+      isLiked = !isLiked;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +189,7 @@ class BlogTile extends StatelessWidget {
       onTap: (){
         Navigator.push(context, MaterialPageRoute(
             builder: (context) => ArticleView(
-                blogUrl: url!,
+                blogUrl: widget.url!,
             )
           )
         );
@@ -173,18 +200,26 @@ class BlogTile extends StatelessWidget {
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-                child: Image.network(imgUrl!),
+                child: Image.network(widget.imgUrl!),
             ),
-            Text(
-              title!,
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w500,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: Text(
+                    widget.title!,
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                LikeButton(isLiked: isLiked, onTap: toggleLike),
+              ],
             ),
             const SizedBox(height: 8,),
             Text(
-              description!,
+              widget.description!,
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400
@@ -192,6 +227,23 @@ class BlogTile extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class LikeButton extends StatelessWidget {
+  final bool isLiked;
+  final Function()? onTap;
+  const LikeButton({super.key, required this.isLiked, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Icon(
+        isLiked ? Icons.favorite : Icons.favorite_border,
+        color: isLiked ? Colors.red : Colors.grey,
       ),
     );
   }

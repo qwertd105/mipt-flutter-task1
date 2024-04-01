@@ -5,6 +5,12 @@ List<CategoryModel> getCategories() {
   List<CategoryModel> categories = List<CategoryModel>.empty(growable: true);
   CategoryModel categoryModel = CategoryModel();
 
+  categoryModel = CategoryModel();
+  categoryModel.categoryName = "Favourite";
+  categoryModel.imgUrl = 'assets/news_categories/AmercianHeartMonth-1 .jpg';
+  categories.add(categoryModel);
+
+  categoryModel = CategoryModel();
   categoryModel.categoryName = "Health";
   categoryModel.imgUrl = 'assets/news_categories/svitlana-hclUIrSWwFE-unsplash.jpg';
   categories.add(categoryModel);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 
 import '../helper/app_state.dart';
@@ -18,6 +19,7 @@ class CategoryNews extends StatefulWidget {
 
 class _CategoryNewsState extends State<CategoryNews> {
   late final List<ArticleModel> articles;
+  final favourites = Hive.box('favourites');
   bool _loading = true;
   
   @override
@@ -27,10 +29,17 @@ class _CategoryNewsState extends State<CategoryNews> {
   }
 
   getCatNews() async {
-    CatNews newsTable = CatNews();
-    await newsTable.getCatNews(widget.category);
+    if (widget.category == 'favourite') {
 
-    articles = newsTable.news;
+      News newsTable = News();
+      await newsTable.getNews();
+      articles = newsTable.news.where((element) => favourites.get(element.url) != null).toList();
+    } else {
+      CatNews newsTable = CatNews();
+      await newsTable.getCatNews(widget.category);
+      articles = newsTable.news;
+    }
+
     setState(() {
       _loading = false;
     });
