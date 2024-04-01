@@ -4,11 +4,13 @@
 1. Домашний экран, отображающий данные, полученные с удаленного API.
 2. Экран статей определенной категории. которую можно выбрать на главном экране 
 3. Экран полной статьи с webview в браузере.
+4. Экран понравившихся статей, куда сохраняются новости с отметкой "нравится"
 
 ## Особенности
 - Получение и отображение новостных статей из удаленного API.
 - Просмотр подробной информации о выбранных новостных статьях.
 - Поддержка как темной, так и светлой темы.
+- Поддержка отметок "нравится" для понравившихся статей
 
 ## Используемые технологии
 - Flutter для создания мобильного приложения.
@@ -34,3 +36,6 @@
 ![sc](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/image_2024-03-11_21-07-24.png)
 ![sc](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/image_2024-03-11_21-07-38.png)
 ![sc](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/image_2024-03-11_21-06-45.png)
+![sc](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/image_2024-04-01_21-52-07.png)
+![sc](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/image_2024-04-01_21-52-33.png)
+![sc](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/image_2024-04-01_21-52-01.png)
