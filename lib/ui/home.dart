@@ -232,19 +232,53 @@ class _BlogTileState extends State<BlogTile> {
   }
 }
 
-class LikeButton extends StatelessWidget {
+class LikeButton extends StatefulWidget {
   final bool isLiked;
   final Function()? onTap;
+
   const LikeButton({super.key, required this.isLiked, required this.onTap});
 
   @override
+  State<LikeButton> createState() => _LikeButtonState();
+}
+
+class _LikeButtonState extends State<LikeButton> {
+  double state = 35;
+  double nextState = 56;
+
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Icon(
-        isLiked ? Icons.favorite : Icons.favorite_border,
-        color: isLiked ? Colors.red : Colors.grey,
-      ),
+    if (widget.isLiked) {
+      state = 56;
+      nextState = 56;
+    } else {
+      state = 35;
+      nextState = 35;
+    }
+
+    return TweenAnimationBuilder(
+      duration: const Duration(milliseconds: 500),
+      tween: Tween<double>(begin: state, end: nextState),
+      builder: (BuildContext context, double curSize, Widget? child) {
+        return Padding(
+          padding: EdgeInsets.only(left: (35 - curSize / 2)),
+          child: GestureDetector(
+            onTap: () {
+              widget.onTap!();
+              if (nextState == 35) {
+                nextState = 56;
+              } else {
+                nextState = 35;
+              }
+            },
+            child: Icon(
+              size: curSize,
+              widget.isLiked ? Icons.favorite : Icons.favorite_border,
+              color: widget.isLiked ? Colors.red : Colors.grey,
+            ),
+          ),
+        );
+      },
     );
   }
 }
