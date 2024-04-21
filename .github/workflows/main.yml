@@ -1,21 +1,21 @@
 name: Flutter CI
 on: push
 jobs:
-  format:
+  formating:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Flutter
+      - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.5.3'
+          channel: stable
 
-      - name: Get dependencies
+      - name: Get deps
         run: flutter pub get
 
-      - name: Format check
+      - name: Format checking
         run: dart format --output=none --set-exit-if-changed .
 
   lint:
@@ -25,12 +25,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Flutter
+      - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.5.3'
+          channel: stable
 
-      - name: Get dependencies
+      - name: Get deps
         run: flutter pub get
 
       - name: Lint check
@@ -43,12 +43,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Flutter
+      - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.5.3'
+          channel: stable
 
-      - name: Get dependencies
+      - name: Get deps
         run: flutter pub get
 
       - name: Build APK
