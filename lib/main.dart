@@ -1,4 +1,3 @@
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:tsk1/core/app_state.dart';
 import 'package:tsk1/ui/home.dart';
