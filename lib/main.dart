@@ -11,7 +11,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
-  var favoutites = await Hive.openBox('favourites');
+  // var favoutites = await Hive.openBox('favourites');
 
   runApp(
       ChangeNotifierProvider(create: (context) => AppState(),
