@@ -11,6 +11,7 @@
 - Просмотр подробной информации о выбранных новостных статьях.
 - Поддержка как темной, так и светлой темы.
 - Поддержка отметок "нравится" для понравившихся статей
+- Анимация нажатия на кнопку "нравится"
 
 ## Используемые технологии
 - Flutter для создания мобильного приложения.
@@ -39,3 +40,4 @@
 ![sc](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/image_2024-04-01_21-52-33.png)
 ![sc](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/image_2024-04-01_21-52-01.png)
 ![sc](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/image_2024-03-11_21-06-45.png)
+![sc](https://github.com/qwertd105/mipt-flutter-task1/blob/master/screenshots/Screen_Recording_20240422_004730.gif)
