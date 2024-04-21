@@ -44,34 +44,41 @@ class _ArticleViewState extends State<ArticleView> {
   }
 
   @override
-  Widget build (BuildContext context) => Scaffold(
-    appBar: AppBar(
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text("NewsPaper", style: TextStyle(color: Colors.orange, fontSize: 30),),
-          Consumer<AppState>(
-            builder: (context, appState, child) {
-              return IconButton(onPressed: () {
-                appState.toggleTheme();
-              }, icon: Icon(appState.isDark ? Icons.sunny : Icons.nightlight_round));
-            },
-          )
-        ],
-      ),
-      centerTitle: true,
-      elevation: 0.0,
-    ),
-    body: Stack(
-      children: [
-        WebViewWidget(
-          controller: controller,
-        ),
-        if (loading < 100)
-          LinearProgressIndicator(
-            value: loading / 100.0,
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                "NewsPaper",
+                style: TextStyle(color: Colors.orange, fontSize: 30),
+              ),
+              Consumer<AppState>(
+                builder: (context, appState, child) {
+                  return IconButton(
+                      onPressed: () {
+                        appState.toggleTheme();
+                      },
+                      icon: Icon(appState.isDark
+                          ? Icons.sunny
+                          : Icons.nightlight_round));
+                },
+              )
+            ],
           ),
-      ],
-    ),
-  );
+          centerTitle: true,
+          elevation: 0.0,
+        ),
+        body: Stack(
+          children: [
+            WebViewWidget(
+              controller: controller,
+            ),
+            if (loading < 100)
+              LinearProgressIndicator(
+                value: loading / 100.0,
+              ),
+          ],
+        ),
+      );
 }

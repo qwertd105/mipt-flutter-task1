@@ -14,9 +14,8 @@ Future<void> main() async {
   var favoutites = await Hive.openBox('favourites');
   favoutites.isNotEmpty;
 
-  runApp(
-      ChangeNotifierProvider(create: (context) => AppState(),
-          child: const MyApp()));
+  runApp(ChangeNotifierProvider(
+      create: (context) => AppState(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -24,15 +23,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AppState>(builder: (context, appState, child) {
-      return MaterialApp(
-        title: 'NewsPaper',
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.theme(appState.isDark),
-        home: const Home(),
-      );
-    },);
+    return Consumer<AppState>(
+      builder: (context, appState, child) {
+        return MaterialApp(
+          title: 'NewsPaper',
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.theme(appState.isDark),
+          home: const Home(),
+        );
+      },
+    );
   }
 // This widget is the root of your application.
-
 }

@@ -24,7 +24,6 @@ Response Example:
 }
  */
 
-
 final class ArticleModel {
   String? author;
   String? title;
@@ -34,5 +33,12 @@ final class ArticleModel {
   DateTime? publishedAt;
   String? content;
 
-  ArticleModel({this.author, this.title, this.description, this.url, this.urlToImage, this.publishedAt, this.content});
+  ArticleModel(
+      {this.author,
+      this.title,
+      this.description,
+      this.url,
+      this.urlToImage,
+      this.publishedAt,
+      this.content});
 }

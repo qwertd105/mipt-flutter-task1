@@ -42,71 +42,74 @@ class _HomeState extends State<Home> {
   }
 
   @override
-  Widget build (BuildContext context) => Scaffold(
-    appBar: AppBar(
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text("NewsPaper",
-            style: TextStyle(color: Colors.orange, fontSize: 30),),
-          Consumer<AppState>(
-            builder: (context, appState, child) {
-              return IconButton(onPressed: () {
-                appState.toggleTheme();
-              }, icon: Icon(appState.isDark ? Icons.sunny : Icons.nightlight_round));
-            },
-          )
-        ],
-      ),
-      centerTitle: true,
-      elevation: 0.0,
-    ),
-    body: _loading
-        ?
-    const Center(child: CircularProgressIndicator(),)
-        :
-    SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Column(
-        children: <Widget>[
-
-          /// Categories
-          SizedBox(
-            height: 80,
-            child: ListView.builder(
-                itemCount: categories.length,
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return CategoryTile(
-                    imageURL: categories[index].imgUrl,
-                    categoryTitle: categories[index].categoryName,
-                  );
-                }
-            ),
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                "NewsPaper",
+                style: TextStyle(color: Colors.orange, fontSize: 30),
+              ),
+              Consumer<AppState>(
+                builder: (context, appState, child) {
+                  return IconButton(
+                      onPressed: () {
+                        appState.toggleTheme();
+                      },
+                      icon: Icon(appState.isDark
+                          ? Icons.sunny
+                          : Icons.nightlight_round));
+                },
+              )
+            ],
           ),
+          centerTitle: true,
+          elevation: 0.0,
+        ),
+        body: _loading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Column(
+                  children: <Widget>[
+                    /// Categories
+                    SizedBox(
+                      height: 80,
+                      child: ListView.builder(
+                          itemCount: categories.length,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return CategoryTile(
+                              imageURL: categories[index].imgUrl,
+                              categoryTitle: categories[index].categoryName,
+                            );
+                          }),
+                    ),
 
-          /// Blogs
-          Container(
-            padding: const EdgeInsets.only(top: 24),
-            child: ListView.builder(
-                itemCount: articles.length,
-                shrinkWrap: true,
-                physics: const ClampingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return BlogTile(
-                    imgUrl: articles[index].urlToImage,
-                    title: articles[index].title,
-                    description: articles[index].description,
-                    url: articles[index].url,
-                  );
-                }
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
+                    /// Blogs
+                    Container(
+                      padding: const EdgeInsets.only(top: 24),
+                      child: ListView.builder(
+                          itemCount: articles.length,
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return BlogTile(
+                              imgUrl: articles[index].urlToImage,
+                              title: articles[index].title,
+                              description: articles[index].description,
+                              url: articles[index].url,
+                            );
+                          }),
+                    ),
+                  ],
+                ),
+              ),
+      );
 }
 
 class CategoryTile extends StatelessWidget {
@@ -116,46 +119,58 @@ class CategoryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-    onTap: (){
-      Navigator.push(context, MaterialPageRoute(
-          builder: (context) => CategoryNews(category: categoryTitle!.toLowerCase())
-      )
-      );
-    },
-    child: Container(
-      margin: const EdgeInsets.only(right: 16),
-      child: Stack(
-        children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Image.asset(imageURL!, width: 128, height: 80, fit: BoxFit.cover,),
-          ),
-          Container(
-            alignment: Alignment.center,
-            width: 128, height: 80,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: Colors.black38,
-            ),
-            child: Text(categoryTitle!,
-              style:
-              const TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.w800,
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      CategoryNews(category: categoryTitle!.toLowerCase())));
+        },
+        child: Container(
+          margin: const EdgeInsets.only(right: 16),
+          child: Stack(
+            children: <Widget>[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Image.asset(
+                  imageURL!,
+                  width: 128,
+                  height: 80,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-          )
-        ],
-      ),
-    ),
-  );
+              Container(
+                alignment: Alignment.center,
+                width: 128,
+                height: 80,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  color: Colors.black38,
+                ),
+                child: Text(
+                  categoryTitle!,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      );
 }
 
 class BlogTile extends StatefulWidget {
   final String? imgUrl, title, description, url;
 
-  const BlogTile({super.key, required this.imgUrl, required this.title, required this.description, required this.url});
+  const BlogTile(
+      {super.key,
+      required this.imgUrl,
+      required this.title,
+      required this.description,
+      required this.url});
 
   @override
   State<BlogTile> createState() => _BlogTileState();
@@ -166,12 +181,12 @@ class _BlogTileState extends State<BlogTile> {
   final favourites = Hive.box('favourites');
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     isLiked = favourites.get(widget.url) != null;
   }
 
-  toggleLike(){
+  toggleLike() {
     if (!isLiked) {
       favourites.put(widget.url, true);
     } else {
@@ -186,13 +201,13 @@ class _BlogTileState extends State<BlogTile> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(
-            builder: (context) => ArticleView(
-                blogUrl: widget.url!,
-            )
-          )
-        );
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ArticleView(
+                      blogUrl: widget.url!,
+                    )));
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
@@ -200,7 +215,7 @@ class _BlogTileState extends State<BlogTile> {
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-                child: Image.network(widget.imgUrl!),
+              child: Image.network(widget.imgUrl!),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -217,14 +232,12 @@ class _BlogTileState extends State<BlogTile> {
                 LikeButton(isLiked: isLiked, onTap: toggleLike),
               ],
             ),
-            const SizedBox(height: 8,),
-            Text(
-              widget.description!,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400
-              )
+            const SizedBox(
+              height: 8,
             ),
+            Text(widget.description!,
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
           ],
         ),
       ),
